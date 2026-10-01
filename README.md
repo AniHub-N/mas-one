@@ -2,6 +2,8 @@
 
 I plant lies in a multi-agent system's shared memory and watch which agents believe them.
 
+**First result:** over 10 runs, the verifier reached the correct verdict 6/10 times working only from the raw evidence, and 2/10 times after it could also read its teammates' conclusions. Seeing its peers' reasoning made it less reliable, not more. Small sample, one scenario, one 1.5B model, so treat this as a signal to chase, not a conclusion.
+
 Hand-built, no LangChain or agent framework, so every event an agent reads is visible and every one can be forged. Runs on a small local model (`qwen2.5:1.5b` via Ollama). Early research code.
 
 ## The experiment in `main.py`
@@ -29,7 +31,7 @@ The question underneath: does a verifier that reads its peers' reasoning get bet
 
 The same pipeline isn't a vending machine, it's a slot machine. Identical log, identical prompts, and the conclusions still change from run to run. Any reliability claim has to start from that variance.
 
-Over 10 runs on qwen2.5:1.5b, the isolated verifier reached the correct verdict 6/10 times and the exposed verifier 2/10. Researcher: 2/10, Summarizer: 7/10. Verdicts were extracted by a separate one-word classification call and then hand-checked against the raw outputs (5 of 40 labels corrected); raw outputs are in results/trials.jsonl.
+Over 10 runs on qwen2.5:1.5b, the isolated verifier reached the correct verdict 6/10 times and the exposed verifier 2/10. Researcher: 2/10, Summarizer: 7/10. Verdicts were extracted by a separate one-word classification call and then hand-checked against the raw outputs (5 of 40 labels corrected, listed in results/corrections.md); raw outputs are in results/trials.jsonl.
 
 One thing I'm aware of: the base prompt tells agents to watch for "adversarial misinformation", which tips them off. A version without that warning is next.
 
