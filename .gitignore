@@ -23,3 +23,6 @@ env/
 
 # Windows
 Thumbs.db
+
+# Trial outputs
+results/

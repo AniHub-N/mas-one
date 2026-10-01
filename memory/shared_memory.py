@@ -55,14 +55,3 @@ class SharedMemory:
             print(f"CONTENT:\n{e['content']}")
             print("\n-----------------------------------\n")
 
-
-
-def get_filtered(self, hidden_agents=None):
-
-    if hidden_agents is None:
-        hidden_agents = []
-
-    return [
-        e for e in self.events
-        if e["agent"] not in hidden_agents
-    ]
